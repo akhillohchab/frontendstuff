@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+   
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script> 
+<script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script> 
+    <style>
+      html, body, #map-canvas { margin: 0; padding: 0; height: 100%; }
+    </style>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?libraries=visualization">
+    </script>
+    <script>
+var map;
+
+var dataUrl = 'http://connectme-env-3bpnycxdry.elasticbeanstalk.com/api/event/?event_id=5497f8c7f1cd3133e8b4efc7';	
+
+  $('#myPage').live('pageinit', function(event){
+                            	$.support.cors = true;
+				wtf();
+                            });
+
+
+var geocoder;
+var map;
+var places;
+var lng;
+var markers = [];
+function initialize() {
+// create the geocoder
+geocoder = new google.maps.Geocoder();
+// set some default map details, initial center point, zoom and style
+var mapOptions = {
+center: new google.maps.LatLng(40.74649,-74.0094),
+zoom: 7,
+mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+// create the map and reference the div#map-canvas container
+map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+// fetch the existing places (ajax)
+// and put them on the map
+fetchPlaces();
+}
+// when page is ready, initialize the map!
+google.maps.event.addDomListener(window, 'load', initialize);
+
+      // Call the initialize function after the page has finished loading
+      //google.maps.event.addDomListener(window, 'load', initialize);
+
+var fetchPlaces = function() {
+  alert("bwaha");
+
+$.ajax({
+url : dataUrl,
+dataType : 'json',
+success : function(response) {
+if (response.status == 'OK') {
+alert("success");
+//places = response.latitude;
+
+// loop through places and add markers
+for (p in data) {
+//create gmap latlng obj
+tmpLatLng = new google.maps.LatLng( Number(data.latitude[p]), Number(data.longitude[p]));
+// make and place map maker.
+var marker = new google.maps.Marker({
+map: map,
+position: tmpLatLng,
+//title : places[p].name + "<br>" + places[p].geo_name
+});
+//bindInfoWindow(marker, map, infowindow, '<b>'+places[p].name + "</b><br>" + places[p].geo_name);
+// not currently used but good to keep track of markers
+markers.push(marker);
+}
+}
+
+}//success function ends
+})
+};
+
+
+    </script>
+  </head>
+  <body>
+	<div id="myPage">
+    <div id="map-canvas"></div>
+</div>  
+</body>
+</html>
+
+

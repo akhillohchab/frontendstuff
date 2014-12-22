@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="lib/onsen/css/onsenui.css">
+<link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">
+<script src="lib/onsen/js/angular/angular.js"></script>
+<script src="lib/onsen/js/onsenui.js"></script>
+<script>
+  ons.bootstrap();
+  ons.ready(function() {
+    // Add another Onsen UI element
+    var content = document.getElementById("#my-content");
+    content.innerHTML="<ons-button>Another Button</ons-button>";
+    ons.compile(content);
+  });
+</script>
+<body>
+  <ons-navigator title="Navigator" var="myNavigator">
+    <ons-page>
+      <ons-button onclick="myNavigator.pushPage('page2.html')">Next Page</ons-button>
+      <div id="my-content"></div>
+    </ons-page>
+  </ons-navigator>
+</body>
+

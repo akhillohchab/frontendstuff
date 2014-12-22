@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>ListApp</title>
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
+<style>
+    img.fullscreen {
+        max-height: 100%;
+        max-width: 100%;
+    }       
+</style>
+
+
+</head>
+
+    <body>
+<div data-role="page1" id="index">
+
+<header data-role="header">
+ <a href="#myPanel" class="ui-btn ui-btn-inline">Open Panel</a>	   
+ <h1>My Events</h1>
+</header>
+    <p>Click on the button below to open the Panel.</p>
+   
+<article data-role="content">
+    <div data-role="panel" data-display = "overlay" id="myPanel">
+<div data-role="listview" data-display = "overlay" id="myPanel">
+     	     
+   <li>
+            <a href="#">
+            <h1>Event 1</h1>
+            <p>This is what happens when a
+            friend brings a dog to the studio.</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+            <h1>Gummy Bears</h1>
+            <p>Three different poster boards...mirror for reflection,
+            black for background white for highlights</p>
+            </a>
+        </li>
+    </ul>
+</article>
+
+	<footer data-role="footer" data-position="fixed">
+    <nav data-role="navbar">
+	
+        <ul >
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+        </ul>
+	
+    </nav>
+</footer>
+</div><!-- page myevents-->
+</body>
+</html>
+<script>
+$(document).live('pageinit','#index', function(){
+   alert("haha");
+$(document).delegate('#index', 'pageinit',function() {
+alert("start");}
+</script>

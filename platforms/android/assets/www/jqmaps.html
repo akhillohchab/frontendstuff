@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+    <title>My Page</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="css/jquery.mobile-1.1.0.min.css" />
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="js/jquery.mobile-1.1.0.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.ui.map.js"></script>
+</head> 
+<body> 
+
+
+    <div data-role="content" id="map_canvas"  name="contentMain" style="position:absolute; width:100%; height:100%;">   
+
+    </div><!-- /content -->
+
+<script type="text/javascript">
+   $('#map_canvas').gmap().bind('init', function() { 
+    // This URL won't work on your localhost, so you need to change it
+    // see http://en.wikipedia.org/wiki/Same_origin_policy
+    $.getJSON( 'http://jquery-ui-map.googlecode.com/svn/trunk/demos/json/demo.json', function(data) { 
+        $.each( data.markers, function(i, marker) {
+            $('#map_canvas').gmap('addMarker', { 
+                'position': new google.maps.LatLng(marker.latitude, marker.longitude), 
+                'bounds': true 
+            }).click(function() {
+                $('#map_canvas').gmap('openInfoWindow', { 'content': marker.content }, this);
+            });
+        });
+    });
+});
+</script></body>
+</html>
