@@ -31,7 +31,9 @@
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
      getLoc();
-     //addMarker(40,70);
+     //addMarker(40,70, "1234");
+
+
      
   }
 
@@ -48,7 +50,7 @@ user_ids = user_ids + ",";
 function getLoc(){
 
   console.log("wtf");
-  addMarker(40.40, -74)
+  addMarker(40.40, -74, 101)
     $.ajax({
 type: "GET",
 dataType: "json",
@@ -56,12 +58,13 @@ url: 'http://connectme-env-3bpnycxdry.elasticbeanstalk.com/api/event/publicevent
 success: function(data) {
   var p = "";
   var q = "";
-
+  var q="";
 for (i in data){
 p=data[i].latitude;  
 
 q=data[i].longitude;  
-addMarker(Number(p),Number(q));
+ind = data[i]._id;
+addMarker(Number(p),Number(q), ind.$oid);
 
 }
 
@@ -75,12 +78,25 @@ alert("Fail");
 
     }
 
-function addMarker(lat,lng) {
+function addMarker(lat,lng, m_id) {
           console.log("add");
           marker = new google.maps.Marker({
           position: new google.maps.LatLng(lat,lng),
           map: map,
+          customInfo: m_id
           });
+          //marker.set("M", m_id);
+          //alert(m_id);
+          //localStorage.setItem("current_selected_event",m_id);
+          //alert(m_id);
+
+  google.maps.event.addListener(marker, 'click', function() {
+    //alert("click!");
+    localStorage.setItem("current_selected_event",this.customInfo);
+         
+    alert(this.customInfo);
+    window.location.replace('eventDetails.html');
+  });
           //markersArray.push(marker);
   }
 

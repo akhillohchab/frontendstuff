@@ -9,7 +9,6 @@
 
     $('#myPage').live('pageinit', function(event){
                             	$.support.cors = true;
-				                      wtf();
                             });
 /*
    $.getJSON("http://connectme-env-3bpnycxdry.elasticbeanstalk.com/api/event/?event_id=5497f8c7f1cd3133e8b4efc7", function (json) {
@@ -23,32 +22,7 @@
 
     });
 */
-function wtf(){
-alert($.support.cors);
-$.ajax({
-type: "GET",
-dataType: "json",
-url: 'http://connectme-env-3bpnycxdry.elasticbeanstalk.com/api/event/publicevents',
-success: function(data) {
-  var p = "";
-  var q = "";
 
-for (i in data){
-q=data[i].longitude;  
-alert(data[i].latitude);
-alert(q);
-
-
-}
-
-
-},
-error: function(data, textStatus, errorThrown) {
-alert("Fail");
-}
-
-});
-}
 
 </script>
     

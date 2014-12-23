@@ -14,34 +14,140 @@
     }       
 </style>
 
-
+   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>   
 </head>
+<script>
+
+     
+   var map;
+   var marker;
+   var p;
+   var q;
+     var position;
+  
+  function initialize() {
+  var mapOptions = {
+    zoom: 10,
+    center: new google.maps.LatLng(40.7127, -74.0059)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+     getLoc();
+     //addMarker(40,70, "1234");
+
+
+     
+  }
+
+        //getLoc();
+ /*    var attendees = data.attending_list;
+var user_ids = "";
+for (attendee in attendees) {
+user_ids = user_ids + attendees[attendee].$oid;
+if (attendee != attendees.length-1) {
+user_ids = user_ids + ",";
+}
+}
+*/
+function getLoc(){
+
+  console.log("wtf");
+  addMarker(40.40, -74, 101)
+    $.ajax({
+type: "GET",
+dataType: "json",
+url: 'http://connectme-env-3bpnycxdry.elasticbeanstalk.com/api/event/publicevents',
+success: function(data) {
+  var p = "";
+  var q = "";
+  var q="";
+for (i in data){
+p=data[i].latitude;  
+
+q=data[i].longitude;  
+ind = data[i]._id;
+addMarker(Number(p),Number(q), ind.$oid);
+
+}
+
+
+},
+error: function(data, textStatus, errorThrown) {
+alert("Fail");
+}
+
+});
+
+    }
+
+function addMarker(lat,lng, m_id) {
+          console.log("add");
+          marker = new google.maps.Marker({
+          position: new google.maps.LatLng(lat,lng),
+          map: map,
+          customInfo: m_id
+          });
+          //marker.set("M", m_id);
+          //alert(m_id);
+          //localStorage.setItem("current_selected_event",m_id);
+          //alert(m_id);
+
+  google.maps.event.addListener(marker, 'click', function() {
+    //alert("click!");
+    localStorage.setItem("current_selected_event",this.customInfo);
+         
+    alert(this.customInfo);
+    window.location.replace('eventDetails.html');
+  });
+          //markersArray.push(marker);
+  }
+
+
+      // Call the initialize function after the page has finished loading
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+    <script>
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $("#map-canvas").hide();
+  });
+  $("#show").click(function(){
+    $("#map-canvas").show();
+  });
+});
+</script>
+
 
     <body>
-<div data-role="page1" id="index">
+
+
+<div data-role="page1" id="index" class="container">
 
 <header data-role="header">
- <a href="#myPanel" class="ui-btn ui-btn-inline">Open Panel</a>	   
+ <a href="#myPanel" class="ui-btn ui-btn-inline">Menu</a>	   
  <h1>My Events</h1>
 </header>
-    <p>Click on the button below to open the Panel.</p>
    
+<div class="inner mainc"></div>
 <article data-role="content">
-    <div data-role="panel" data-display = "overlay" id="myPanel">
-<div data-role="listview" data-display = "overlay" id="myPanel">
-     	     
+    <div data-role="panel" data-display = "push" id="myPanel" >
+<div data-role="listview" data-display = "push" id="myPanel">
+  
+ <li>
+
+  <h1>Menu</h1>
+  </li>   	     
+  
    <li>
-            <a href="#">
-            <h1>Event 1</h1>
-            <p>This is what happens when a
-            friend brings a dog to the studio.</p>
+            <a onclick="showHm()"  id="showhome">
+            <h2>Home</h2>
             </a>
         </li>
         <li>
             <a href="#">
-            <h1>Gummy Bears</h1>
-            <p>Three different poster boards...mirror for reflection,
-            black for background white for highlights</p>
+            <h2>ummy Bears</h2>
             </a>
         </li>
     </ul>
@@ -53,17 +159,16 @@
         <ul >
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
+           
         </ul>
 	
     </nav>
 </footer>
 </div><!-- page myevents-->
+
+<div data-role="page "id="map-canvas"></div>
+<button id="hide">Hide</button>
+<button id="show">Show</button>
+
 </body>
 </html>
-<script>
-$(document).live('pageinit','#index', function(){
-   alert("haha");
-$(document).delegate('#index', 'pageinit',function() {
-alert("start");}
-</script>
