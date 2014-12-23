@@ -38,6 +38,7 @@
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/publicevents.html \
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/cordova.js \
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/cordova_plugins.js \
+/home/akhil/Downloads/dummyproj/platforms/android/assets/www/publicevents_test.html \
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/userevents_test.html \
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/index2.html \
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/jsonmapstest.html \
@@ -49,6 +50,7 @@
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/testmap.html \
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/eventDetails.html \
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/eventstest2.html \
+/home/akhil/Downloads/dummyproj/platforms/android/assets/www/usermap.html \
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/lib \
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/styles/app.css \
 /home/akhil/Downloads/dummyproj/platforms/android/assets/www/styles/onsen-css-components-dark-theme.css \

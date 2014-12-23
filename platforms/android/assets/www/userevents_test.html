@@ -3,17 +3,21 @@
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi"/>
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-        <!--<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>-->
+<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+ -->        <!--<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>-->
 <script src='js/userevents.js' type='text/javascript'></script>
 <link rel='stylesheet' href='styles/userevents.css' type='text/css'></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script> 
 
-<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>    
+<!-- <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>     -->
 
 <script>
 	$(document).ready(function() {
-	var currentURL = 'http://connectme-env-39mscffus9.elasticbeanstalk.com/api/calendar/getattendingevents/?user_id=10152898445624880';
+	var currentURL = 'http://connectme-env-39mscffus9.elasticbeanstalk.com/api/calendar/getattendingevents/?user_id=';
+	//5497f0cef1cd3134f4f35391';
+	//+localStorage.getItem("user_id");
+	//10152898445624880';
+	
 	$.ajax({
 		type: "GET",
 		dataType: "json",
@@ -37,7 +41,9 @@ for (i in data){
 
 	});
 	
-	currentURL = 'http://connectme-env-39mscffus9.elasticbeanstalk.com/api/calendar/getinvitedevents/?user_id=54992caaf7af770b6f695f09';
+	currentURL = 'http://connectme-env-39mscffus9.elasticbeanstalk.com/api/calendar/getinvitedevents/?user_id=';
+	//5497f0cef1cd3134f4f35391';
+	//+localStorage.getItem("user_id");
 	// + localStorage.getItem("user_id");
 //10152898445624880
 	// 
@@ -52,7 +58,7 @@ for (i in data){
 
 
 			displayEvent(data[i]);
-			alert("this is2");
+			//alert("this is2");
 		}
 
 
@@ -163,8 +169,8 @@ function displayEvent(data) {
 	var component= document.getElementById("eventsList1");
 	//alert("ha"+data._id.$oid);
 	
-	component.innerHTML += "<li onclick='detailEvent("+JSON.stringify(data._id.$oid).replace(/"/g,"&quot;")+")'><div><span><h4>"+data.name +"</h4>"+ eventDate+"</span></div></li>";
-	alert("inner"+component.innerHTML);
+	component.innerHTML += "<li class =\"green\" onclick='detailEvent("+JSON.stringify(data._id.$oid).replace(/"/g,"&quot;")+")'><div><span><h4>"+data.name +"</h4>"+ eventDate+"</span></div></li>";
+	//alert("inner"+component.innerHTML);
 	//document.getElementById("event_date").innerText = eventDate;
 	//document.getElementById("event_start").innerText = eventStart;
 	//document.getElementById("event_end").innerText = eventEnd;
@@ -185,10 +191,10 @@ function displayEvent2(data) {
 	eventDate = eventDate.substr(0, 4) + "-" + eventDate.substr(4);
 	eventDate = eventDate.substr(0, 7) + "-" + eventDate.substr(7);
 	curr_event=JSON.stringify(data._id.$oid);
-	var component= document.getElementById("eventsList2");
+	var component= document.getElementById("eventsList1");
 	//alert("ha"+data._id.$oid);
-	component.innerHTML += "<li onclick='detailEvent("+JSON.stringify(data._id.$oid).replace(/"/g,"&quot;")+")'><div><span><h4>"+data.name +"</h4>"+ eventDate+"</span></div></li>";
-	alert("inner"+component.innerHTML);
+	component.innerHTML += "<li class =\"blue\" onclick='detailEvent("+JSON.stringify(data._id.$oid).replace(/"/g,"&quot;")+")'><div><span><h4>"+data.name +"</h4>"+ eventDate+"</span></div></li>";
+	//alert("inner"+component.innerHTML);
 	//document.getElementById("event_date").innerText = eventDate;
 	//document.getElementById("event_start").innerText = eventStart;
 	//document.getElementById("event_end").innerText = eventEnd;
@@ -206,39 +212,52 @@ function detailEvent(id) {
 };
 
 </script>
-
 <style type="text/css">
 	/*custom font*/
 
-/*basic reset*/
-* {margin: 0; padding: 0;}
-
-html {
-	height: 100%;
-	/*Image only BG fallback*/
-	/*background: url('http://thecodeplayer.com/uploads/media/gs.png');*/
-	/*background = gradient + image pattern combo*/
-	/*background: 
-		linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)), 
-		url('http://thecodeplayer.com/uploads/media/gs.png');*/
-}
-
 body {
-	font-family: montserrat, arial, verdana;
+    cursor: default;
+    font-size: 14px;
+    line-height: 21px;
+    font-family: "Segoe UI","Helvetica",Garuda,Arial,sans-serif;
+    padding: 18px 18px 18px 18px;
 }
-/*form styles*/
-.ui-content {
-    padding: 0 !important;
+ul {
+    margin-bottom: 14px;
+    list-style: none;
 }
- 
-.ui-listview {
-    margin: 0 !important;
+li { display: block;
+    width: 400;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 10px;
+margin-left:-55px;
+margin-right:50px;
+margin-top: auto;
+float:center;
+border:none; 
+height: auto;
+overflow: hidden;
+padding-top: -25px; 
+list-style-position: relative;
 }
- 
-.example-wrapper, .example-wrapper div.iscroll-scroller {
-    width: 100% !important;
-}
+
+
+
+.orange { border-left: 5px solid #F5876E; }
+
+.blue{ border-left: 5px solid #61A8DC; }
+
+.green{ border-left: 5px solid #8EBD40; }
+
+.purple { border-left: 5px solid #988CC3; }
+
+.gold { border-left: 5px solid #D8C86E; }
+
+
 </style>
+
+
 
 
 
@@ -251,7 +270,7 @@ body {
 		</div>
 		<div data-role="content">
 		<div class="example-wrapper" data-iscroll>
-		<ul id="eventsList1" data-role="listview" data-inset="true" data-theme="a">
+		<ul id="eventsList1" data-theme="a">
 		</ul>
 		</div>
 		</div>

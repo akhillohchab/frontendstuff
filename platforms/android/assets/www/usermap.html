@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+ <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>   
+
+     <script>
+
+   
+   var map;
+   var marker;
+   var p;
+   var q;
+     var position;
+  var currURL = 'http://connectme-env-39mscffus9.elasticbeanstalk.com/api/event/friendevents/';
+  function initialize() {
+  var mapOptions = {
+    zoom: 10,
+    center: new google.maps.LatLng(40.7127, -74.0059)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+     getLoc();
+     //addMarker(40,70, "1234");
+
+
+     
+  }
+
+        //getLoc();
+ /*    var attendees = data.attending_list;
+var user_ids = "";
+for (attendee in attendees) {
+user_ids = user_ids + attendees[attendee].$oid;
+if (attendee != attendees.length-1) {
+user_ids = user_ids + ",";
+}
+}
+*/
+
+function getLoc(){
+alert(currURL);
+  console.log("wtf");
+  addMarker(40.40, -74, 101)
+    $.ajax({
+type: "GET",
+dataType: "json",
+//url: currURL+localStorage.getItem("user_id")+'/';,
+url:'http://connectme-env-39mscffus9.elasticbeanstalk.com/api/event/friendevents/5497f0cef1cd3134f4f35391/',
+success: function(data) {
+  
+  var p = "";
+  var q = "";
+  var q="";
+for (i in data){
+  alert(data[i]);
+p=data[i].latitude;  
+
+q=data[i].longitude;  
+ind = data[i]._id;
+addMarker(Number(p),Number(q), ind.$oid);
+
+}
+
+
+},
+error: function(data, textStatus, errorThrown) {
+alert("Fail");
+}
+
+});
+
+    }
+
+
+    function addMarker(lat,lng, m_id) {}
+
+      // Call the initialize function after the page has finished loading
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+
+    <div data-role="page "id="map-canvas"></div>
+  </body>
+</html>
+
+
